@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f7f9fd;
+  --foreground: #10233d;
+  --primary: #7dd3fc;
+  --accent: #34d399;
+  --muted: #5b6b82;
+  --card: rgba(255, 255, 255, 0.9);
+  --border: rgba(15, 23, 42, 0.1);
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --destructive: #ef4444;
+  --container-width: 1200px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-[radial-gradient(circle_at_top,_#f8fbff_0%,_#edf7ff_25%,_#eefdf8_100%)] font-sans text-base text-slate-800 antialiased;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8;
+  }
+}
+
+.hero-card, .passport-card, .stats-card, .form-card, .badge-card, .map-pin {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 16px 40px -24px rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(10px);
+  animation: fadeUp 0.3s ease both;
+}
+
+.page { display: flex; flex-direction: column; gap: 20px; }
+.content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+.side-stack { display: flex; flex-direction: column; gap: 20px; }
+.form-card { display: flex; flex-direction: column; gap: 12px; }
+.form-card label { display: flex; flex-direction: column; gap: 6px; font-size: 0.95rem; }
+input, textarea, button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+input:focus, textarea:focus {
+  outline: 2px solid rgba(125, 211, 252, 0.35);
+  box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.15);
+}
+textarea { min-height: 90px; resize: vertical; }
+button {
+  background: linear-gradient(135deg, #7dd3fc, #34d399);
+  color: #082f49;
+  font-weight: 700;
+  cursor: pointer;
+}
+button:hover { transform: translateY(-1px); }
+.error-text { color: #ef4444; font-size: 0.85rem; }
+.preview-image, .passport-image { width: 100%; border-radius: 12px; object-fit: cover; max-height: 180px; }
+.stamp-card {
+  border-radius: 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, #ffffff, #fef3c7);
+  color: #0f172a;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  border: 2px solid #fbbf24;
+  position: relative;
+  overflow: hidden;
+}
+.stamp-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.8), transparent 42%);
+  pointer-events: none;
+}
+.stamp-card__top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.stamp-card__badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fb923c, #f43f5e);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 1.15rem;
+}
+.stamp-card__header h3 { margin: 0; font-size: 1.05rem; }
+.stamp-card__header p { margin: 2px 0 0; color: #7c2d12; font-weight: 600; }
+.stamp-card__body { margin-bottom: 12px; }
+.stamp-card__photo, .stamp-card__placeholder {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #fbbf24, #f97316);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.stamp-card__footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: #7c2d12; }
+.stamp-card__seal {
+  width: 32px; height: 32px; border-radius: 50%; background: #0f172a; color: white; display: grid; place-items: center; font-weight: 700;
+}
+.stamp-card--summary { background: linear-gradient(135deg, #fef3c7, #dbeafe); }
+.stamp-card__summary { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 8px; }
+.stamp-card__summary div {
+  display: flex; flex-direction: column; align-items: center; padding: 10px; border-radius: 12px; background: rgba(255,255,255,0.55);
+}
+.stamp-card__summary strong { font-size: 1.15rem; }
+.stamp-card__summary span { color: #475569; font-size: 0.85rem; }
+.passport-grid, .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.stamp-item { background: rgba(255,255,255,0.16); border-radius: 14px; padding: 14px; }
+.stats-grid, .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.stats-grid div, .stats-row div { background: rgba(255,255,255,0.15); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; }
+.travel-stats { display: flex; flex-direction: column; gap: 12px; }
+.stat-card {
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  padding: 14px;
+}
+.stat-card strong { font-size: 1.15rem; margin-bottom: 4px; }
+.stat-card span { color: #475569; font-size: 0.9rem; }
+.badge-card.unlocked { border-color: #7dd3fc; background: rgba(125, 211, 252, 0.25); }
+.progress-bar { width: 100%; height: 8px; margin-top: 10px; background: rgba(15, 23, 42, 0.08); border-radius: 999px; overflow: hidden; }
+.progress-bar__fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #f59e0b); border-radius: inherit; }
+.map-view { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.map-pin { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.map-pin:hover { transform: translateY(-2px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .page-content { padding: 16px; }
+  .content-grid { grid-template-columns: 1fr; }
+  .stats-grid, .stats-row { grid-template-columns: 1fr; }
+}
