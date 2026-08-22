@@ -36,8 +36,39 @@ a user asks about a specific travel destination.
 ```ts
 {
   destination: string;
-  reason?: string;
+  country: string;
+  description: string;
+  bestFor: string[];
+  stampDifficulty: string;
+  recommendedDays: number;
+  reason: string | null;
 }
+
+---
+
+## 10. One important improvement
+
+For the assignment, this simulated destination database is enough to demonstrate the **tool architecture**, but for your final StampQuest project I'd replace:
+
+```tsx
+getCountry()
+getDescription()
+getBestFor()
+
+#architectural boundary
+User
+  ↓
+Chat UI
+  ↓
+Claude
+  ↓
+getDestinationInfo tool
+  ↓
+Server-side data
+  ↓
+Typed tool result
+  ↓
+DestinationCard
 
 ## 📂 Project Structure
 
