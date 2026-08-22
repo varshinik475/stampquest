@@ -169,3 +169,162 @@ button:hover { transform: translateY(-1px); }
   .content-grid { grid-template-columns: 1fr; }
   .stats-grid, .stats-row { grid-template-columns: 1fr; }
 }
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.tool-card p {
+  margin: 4px 0 0;
+  color: #666;
+}
+
+.tool-icon {
+  font-size: 24px;
+}
+
+.tool-badge {
+  margin-left: auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: #eee;
+}
+
+.tool-input-streaming {
+  opacity: 0.7;
+}
+
+.tool-input-available {
+  border-style: dashed;
+}
+
+.tool-error {
+  border-color: #d92d20;
+  background: #fff5f5;
+}
+
+.tool-error button {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.destination-card {
+  margin: 14px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.destination-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.destination-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #777;
+}
+
+.destination-card h3 {
+  margin: 4px 0;
+  font-size: 24px;
+}
+
+.destination-card-header p {
+  margin: 0;
+  color: #666;
+}
+
+.stamp-icon {
+  font-size: 36px;
+}
+
+.destination-description {
+  margin: 18px 0;
+  line-height: 1.6;
+}
+
+.destination-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid #eee;
+}
+
+.destination-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.destination-details span {
+  font-size: 13px;
+  color: #777;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #f0f0f0;
+  color: #333 !important;
+  font-size: 12px !important;
+}
+
+.add-stamp-button {
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #111;
+  color: white;
+  font-weight: 600;
+}
+
+.thinking-status {
+  max-width: 360px;
+}
+
+.status-icon {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 600px) {
+  .destination-details {
+    grid-template-columns:
+      1fr 1fr 1fr;
+  }
+}
