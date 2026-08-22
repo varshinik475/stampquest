@@ -1,30 +1,42 @@
-import { streamText, convertToModelMessages } from "ai";
+import {
+  convertToModelMessages,
+  streamText,
+  UIMessage,
+} from "ai";
+
 import { AI_MODEL, SYSTEM_PROMPT } from "@/lib/ai";
+import { destinationTool } from "@/lib/tools/destination-tool";
+
+export const maxDuration = 30;
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-
-    const messages = body.messages;
-
-    if (!Array.isArray(messages)) {
-      return new Response(
-        JSON.stringify({
-          error: "Invalid messages",
-        }),
-        {
-          status: 400,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
+    const {
+      messages,
+    }: {
+      messages: UIMessage[];
+    } = await request.json();
 
     const result = streamText({
       model: AI_MODEL,
-      system: SYSTEM_PROMPT,
+
+      system: `${SYSTEM_PROMPT}
+
+You have access to a destination information tool.
+
+When the user asks for information about a specific
+destination, use the getDestinationInfo tool instead
+of inventing destination details.
+
+After the tool returns, explain the result naturally
+and help the user decide whether to add the destination
+to their StampQuest passport.`,
+
       messages: await convertToModelMessages(messages),
+
+      tools: {
+        getDestinationInfo: destinationTool,
+      },
     });
 
     return result.toUIMessageStreamResponse();
@@ -33,7 +45,7 @@ export async function POST(request: Request) {
 
     return new Response(
       JSON.stringify({
-        error: "Unable to generate response.",
+        error: "Unable to process the chat request.",
       }),
       {
         status: 500,
