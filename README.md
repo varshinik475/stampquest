@@ -24,11 +24,26 @@ StampQuest is a React-based travel passport application where users collect digi
 * CSS
 * React Hooks
 * Local Storage
+* ## AI Tool Contract
+
+### `getDestinationInfo`
+
+The StampQuest AI can call `getDestinationInfo` when
+a user asks about a specific travel destination.
+
+#### Input
+
+```ts
+{
+  destination: string;
+  reason?: string;
+}
 
 ## 📂 Project Structure
 
 ```
 src/
+├── app/
 ├── components/
 ├── pages/
 ├── context/
