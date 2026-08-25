@@ -1,5 +1,15 @@
 # StampQuest
 
+## Portfolio Submission
+
+StampQuest is a digital travel passport for travelers who want one calm place to record visits, collect stamps, and turn destination research into useful trip ideas. It combines a structured passport with an AI travel guide that returns destination details and a resilient result card, so the AI helps with a real planning task rather than acting as a generic chat demo.
+
+**Repository:** https://github.com/varshinik475/stampquest
+
+**Local demo:** http://127.0.0.1:4173/passport-orbit
+
+**Deployment status:** The Vercel preview is connected but currently protected by Vercel SSO. A public production URL requires an authenticated Vercel deployment; the local URL and repository are the verified deliverables in this workspace.
+
 ## 🌍 Overview
 
 StampQuest is a React-based travel passport application where users collect digital stamps from places they visit and build their own personalised travel passport. The application helps travellers keep track of destinations, travel memories, and achievements through an engaging and interactive interface.
@@ -93,6 +103,9 @@ Server-side data
 Typed tool result
   ↓
 DestinationCard
+```
+
+The React application owns navigation, local travel state, passport rendering, and accessible forms. The `/chat` route renders the AI guide. Its server route calls the language model and exposes the typed `getDestinationInfo` tool; the client renders text, streaming status, errors, and structured destination results. The 3D Passport Orbit route is lazy-loaded and uses generated Three.js primitives with a static fallback.
 
 ## 📂 Project Structure
 
@@ -117,7 +130,7 @@ src/
 
 ## 🌐 Deployment
 
-The repository is connected to Vercel. The previously generated Vercel preview URL is protected by Vercel SSO, so the local URL above is the reliable development demo until a public production deployment is configured.
+See [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md) for the verified release checks, safe failure behavior, and rollback plan. The previously generated Vercel preview URL is protected by Vercel SSO, so the local URL above is the reliable development demo until a public production deployment is configured.
 
 ## 🧭 3D Passport Orbit
 
