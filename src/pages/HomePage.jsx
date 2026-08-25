@@ -3,6 +3,7 @@ import Button from '../components/Button';
 import Card from '../components/Card';
 import PageContainer from '../components/PageContainer';
 import SectionHeader from '../components/SectionHeader';
+import ShaderHero from '../components/ShaderHero';
 
 const quickLinks = [
   { title: 'Passport', description: 'Your personal travel log and collected memories.', to: '/passport' },
@@ -13,19 +14,19 @@ const quickLinks = [
 export default function HomePage() {
   return (
     <PageContainer>
-      <section className="grid gap-6 lg:grid-cols-[1.5fr_0.9fr] lg:items-center">
-        <Card className="bg-[linear-gradient(135deg,#dff7ff_0%,#f1fef1_100%)] p-8 sm:p-10">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">Travel smarter</p>
-          <h1 className="max-w-xl text-display font-black text-slate-900">Collect stories, stamps, and memories across every journey.</h1>
-          <p className="mt-4 max-w-xl text-body text-slate-600">
-            StampQuest helps you keep a personal digital passport, unlock memorable travel stamps, and revisit the places that shaped your adventures.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button to="/passport">Open passport</Button>
-            <Button to="/explore" variant="secondary">Explore destinations</Button>
-          </div>
-        </Card>
+      <ShaderHero>
+        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-orange-200">Travel smarter</p>
+        <h1 id="home-hero-title" className="max-w-3xl text-display font-black text-white">Collect stories, stamps, and memories across every journey.</h1>
+        <p className="mt-4 max-w-xl text-body text-slate-100">
+          StampQuest helps you keep a personal digital passport, unlock memorable travel stamps, and revisit the places that shaped your adventures.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button to="/passport">Open passport</Button>
+          <Button to="/explore" variant="secondary" className="border-white/30 bg-white/10 text-white hover:bg-white/20">Explore destinations</Button>
+        </div>
+      </ShaderHero>
 
+      <section className="grid gap-6 lg:grid-cols-[1.5fr_0.9fr] lg:items-center">
         <Card className="bg-slate-900 p-7 text-white">
           <p className="text-sm uppercase tracking-[0.2em] text-sky-200">This week</p>
           <div className="mt-6 space-y-5">

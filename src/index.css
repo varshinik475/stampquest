@@ -63,6 +63,26 @@
 }
 .skip-link:focus { transform: translateY(8px); }
 
+.shader-hero {
+  position: relative;
+  min-height: min(620px, 72vh);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(32px, 7vw, 88px);
+  color: white;
+  background: #082f3b;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(8, 47, 59, .22);
+}
+.shader-hero--fallback { background: radial-gradient(circle at 75% 20%, #dc6649, transparent 30%), linear-gradient(135deg, #082f3b, #167d73 62%, #b4483c); }
+.shader-hero__canvas, .shader-hero__veil { position: absolute; inset: 0; width: 100%; height: 100%; }
+.shader-hero__canvas { z-index: -2; display: block; }
+.shader-hero__veil { z-index: -1; background: linear-gradient(90deg, rgba(3, 22, 30, .66), rgba(3, 22, 30, .12) 75%); }
+.shader-hero__content { position: relative; z-index: 1; max-width: 780px; }
+.shader-hero__content h1 { text-wrap: balance; }
+
 .hero-card, .passport-card, .stats-card, .form-card, .badge-card, .map-pin {
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(15, 23, 42, 0.08);

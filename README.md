@@ -21,6 +21,7 @@ StampQuest gives travelers one calm place to record visits, collect memories, an
 - Responsive desktop and mobile UI
 - Interactive 3D Passport Orbit experience
 - AI travel assistant with destination information tooling
+- Fullscreen GLSL aurora shader hero with pointer interaction
 
 ## 🖼️ Screenshots
 
@@ -162,6 +163,10 @@ The repository is connected to Vercel. Configure production environment variable
 ## 🧭 3D Passport Orbit
 
 The `/passport-orbit` route is lazy-loaded and generates its scene from low-poly Three.js primitives, so there is no model download. Users can drag or touch to rotate the passport, shift perspective with the pointer, change cover materials, and pause the slow orbit. Pixel ratio is capped at 1.5 and a static CSS fallback is used for reduced-motion and low-power contexts. See [AUDIT.md](AUDIT.md) for performance and accessibility evidence.
+
+## ✨ GLSL Aurora Hero
+
+The Home route includes a custom fullscreen WebGL fragment shader at `src/components/ShaderHero.jsx`. It uses `u_time` for slow ribbon movement, `u_resolution` for aspect-correct coordinates, and `u_mouse` to gently lean the flow toward the pointer. The shader is commented by section so its coordinate, wave, glow, and grain stages can be explained independently. Device pixel ratio is capped at 1.5, animation stops when the tab is hidden, and reduced-motion or unsupported WebGL receives a static CSS gradient instead.
 
 ## Reflection
 
