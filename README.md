@@ -1,134 +1,153 @@
-# StampQuest
+# StampQuest 🌍
 
-## 🌍 Overview
+StampQuest is a React travel-passport experience where visitors collect digital stamps from places they visit and build a personal passport of destinations, memories, statistics, and achievements.
 
-StampQuest is a React-based travel passport application where users collect digital stamps from places they visit and build their own personalised travel passport. The application helps travellers keep track of destinations, travel memories, and achievements through an engaging and interactive interface.
+## ✨ What it does
 
-## ✨ Features
+- Collect and manage digital travel stamps
+- Build a personal travel passport
+- Explore destinations and travel information
+- Track travel statistics and achievements
+- Search, filter, and favourite destinations
+- Persist travel data with Local Storage
+- Responsive desktop and mobile UI
+- Interactive 3D Passport Orbit experience
+- AI travel assistant with destination information tooling
 
-* Add visited destinations
-* Collect unique digital stamps
-* Personal travel passport
-* Travel statistics dashboard
-* Achievement badges
-* Search and filter visited places
-* Favourite destinations
-* Responsive design
-* Local Storage support for persistent data
+## 🖼️ Screenshots
 
-## 🛠️ Tech Stack
+The production submission should include screenshots of the home page, passport, explore experience, and AI chat here. They are intentionally not embedded until final production screenshots are captured so the README does not point at stale preview assets.
 
-* React
-* Vite
-* JavaScript (ES6+)
-* CSS
-* React Hooks
-* Local Storage
+## 🛠️ Tech stack
 
-## 🚀 Run Locally
+- React 18
+- TypeScript / JavaScript
+- Vite
+- React Router
+- Tailwind CSS
+- Three.js
+- AI SDK
+- Vitest
+- Playwright
+
+## 🚀 Run locally
 
 ```bash
 git clone https://github.com/varshinik475/stampquest.git
 cd stampquest
-npm install
+npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173/` for the main app. The interactive 3D experience is available at `http://127.0.0.1:4173/passport-orbit`.
+Open the local URL printed by Vite.
 
-## 🧪 Test And Build
+### Production build
 
 ```bash
-npm ci
+npm run build
+npm run preview
+```
+
+### Tests
+
+```bash
 npm test
 npm run test:e2e
-npm run build
 ```
 
-GitHub Actions runs the component and Playwright suites on every push and pull request. The workflow also uploads the passing primary-flow screenshot as an artifact.
+## 🔐 Environment variables
 
-## 🤖 AI Tool Contract
+Copy `.env.example` to `.env.local` for local development. Never commit the real API key.
 
-### `getDestinationInfo`
+| Variable | Required | Where it is used | Description |
+|---|---|---|---|
+| `ANTHROPIC_API_KEY` | Yes for AI features | Server only | Anthropic API credential |
 
-The StampQuest AI can call `getDestinationInfo` when
-a user asks about a specific travel destination.
+For Vercel, configure the variable in **Project Settings → Environment Variables** for the Production environment rather than committing `.env.local`.
 
-#### Input
+## 🏗️ Architecture
 
-```ts
-{
-  destination: string;
-  country: string;
-  description: string;
-  bestFor: string[];
-  stampDifficulty: string;
-  recommendedDays: number;
-  reason: string | null;
-}
-```
-
----
-
-## 10. One important improvement
-
-For the assignment, this simulated destination database is enough to demonstrate the **tool architecture**, but for your final StampQuest project I'd replace:
-
-```tsx
-getCountry()
-getDescription()
-getBestFor()
-
-#architectural boundary
-User
+```text
+React UI
   ↓
-Chat UI
+React Router / pages / components
   ↓
-Claude
+TravelContext + Local Storage
+
+AI chat
+  ↓
+Chat client
+  ↓
+Server chat route
+  ↓
+Input validation + request rate limit
+  ↓
+AI SDK / Claude
   ↓
 getDestinationInfo tool
   ↓
-Server-side data
-  ↓
 Typed tool result
   ↓
-DestinationCard
-
-## 📂 Project Structure
-
+Destination UI
 ```
+
+The AI model configuration and system prompt live in `src/lib/ai.ts`. The server chat handler applies a 32 KB request cap, limits conversations to 30 messages, limits individual serialized messages to 4,000 characters, and applies an in-process limit of 10 requests per minute per forwarded client IP. Streaming requests have a `maxDuration` of 30 seconds.
+
+> The in-process limiter is a lightweight production safeguard. For a high-traffic deployment, replace it with a shared provider such as Vercel KV/Redis so limits are consistent across serverless instances.
+
+## 🧠 Key decisions
+
+- **React + Vite:** keeps the main StampQuest experience fast and straightforward to deploy.
+- **Local Storage:** provides persistence without requiring authentication or a database for the internship scope.
+- **React Router:** separates the major passport, explore, map, profile, stamps, and achievement experiences.
+- **Three.js:** powers the Passport Orbit interaction while keeping the scene lightweight.
+- **Server-side AI access:** keeps the Anthropic credential away from browser code.
+- **Input caps and rate limiting:** reduce accidental or abusive API-credit consumption.
+- **Playwright + Vitest:** provide both browser-flow and component-level verification.
+
+## 🧪 Production checklist
+
+Before submitting Checkpoint 2:
+
+- [ ] Deploy the latest `main` commit to the production environment.
+- [ ] Configure `ANTHROPIC_API_KEY` in the hosting provider's production environment.
+- [ ] Confirm `.env.local` is not tracked.
+- [ ] Test Chrome.
+- [ ] Test Firefox.
+- [ ] Test Safari.
+- [ ] Test mobile Chrome.
+- [ ] Test mobile Safari.
+- [ ] Verify the AI request cap and 429 response after repeated requests.
+- [ ] Verify the AI route stops within the configured 30-second maximum.
+- [ ] Capture final production screenshots and add them to this README.
+- [ ] Record the final production URL in the checkpoint submission.
+
+## 🤖 How AI tools built this
+
+AI tools were used as development assistants rather than as an unattended implementation pipeline. They helped generate component structures, React logic, styling ideas, test cases, accessibility improvements, documentation, and the AI interaction architecture. Generated code was reviewed and adjusted manually, and the repository includes tests and explicit production safeguards.
+
+The important manual work was deciding the product flow, reviewing generated code, checking edge cases, validating the UI across viewport sizes, correcting implementation details, and adding production protections such as request caps and rate limiting.
+
+## 📁 Project structure
+
+```text
 src/
-├── app/
-├── components/
-├── pages/
-├── context/
-├── utils/
-├── App.jsx
-├── main.jsx
+├── app/          # AI/server-facing application routes and styles
+├── components/   # Shared UI
+├── context/      # Travel state
+├── data/         # Destination and stamp data
+├── lib/          # AI configuration, tools, and rate limiting
+├── pages/        # Main StampQuest screens
+├── utils/        # Utility helpers
+├── App.tsx       # Application routing
+└── main.tsx      # Application entry point
 ```
-
-## 🎯 Future Improvements
-
-* User authentication
-* Cloud database integration
-* Interactive travel map
-* Photo gallery
-* Travel sharing with friends
 
 ## 🌐 Deployment
 
-The repository is connected to Vercel. The previously generated Vercel preview URL is protected by Vercel SSO, so the local URL above is the reliable development demo until a public production deployment is configured.
-
-## 🧭 3D Passport Orbit
-
-Visit `/passport-orbit` for a generated Three.js passport scene. Drag the passport to turn it, move the pointer to shift its perspective, switch cover materials, or pause the slow orbit. The route lazy-loads the 3D chunk, uses only low-poly primitives with no model download, caps the renderer pixel ratio at 1.5, and serves a static fallback for reduced-motion and low-power devices. With more time, I would add a compressed GLB stamp collection and measure frame time across a wider device matrix.
-
-## 🤖 AI Usage
-
-AI was used as a development assistant for generating component structures, suggesting React logic, creating responsive layouts, and improving the application's architecture. All generated code was manually reviewed, tested, and refined before being included in the final application.
+The repository is connected to Vercel. Configure production environment variables in Vercel and deploy from `main`. A custom domain can be added later from the Vercel project settings.
 
 ## 👩‍💻 Author
 
-K. Varshini
-AI Frontend Engineering Intern
-FlyRank AI
+**K. Varshini**  
+AI Frontend Engineering Intern — FlyRank AI
