@@ -2,6 +2,14 @@
 
 StampQuest is a React travel-passport experience where visitors collect digital stamps from places they visit and build a personal passport of destinations, memories, statistics, and achievements.
 
+## Portfolio Brief
+
+StampQuest gives travelers one calm place to record visits, collect memories, and turn destination research into useful trip ideas. I chose it because the product combines a practical local-first workflow with a meaningful AI task: structured destination guidance that can become part of a travel passport.
+
+**Repository:** https://github.com/varshinik475/stampquest
+**Verified local demo:** http://127.0.0.1:4173/passport-orbit
+**Live deployment:** The connected Vercel preview currently requires Vercel SSO. A public production URL is pending authenticated Vercel deployment.
+
 ## ✨ What it does
 
 - Collect and manage digital travel stamps
@@ -40,6 +48,8 @@ npm run dev
 ```
 
 Open the local URL printed by Vite.
+
+The main app is at `/`; the interactive Passport Orbit experience is at `/passport-orbit`, and the AI guide is at `/chat`.
 
 ### Production build
 
@@ -107,6 +117,8 @@ The AI model configuration and system prompt live in `src/lib/ai.ts`. The server
 
 ## 🧪 Production checklist
 
+The completed release checklist, failure behavior, and rollback plan are documented in [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md). The current public-hosting blocker is Vercel authentication.
+
 Before submitting Checkpoint 2:
 
 - [ ] Deploy the latest `main` commit to the production environment.
@@ -139,13 +151,21 @@ src/
 ├── lib/          # AI configuration, tools, and rate limiting
 ├── pages/        # Main StampQuest screens
 ├── utils/        # Utility helpers
-├── App.tsx       # Application routing
-└── main.tsx      # Application entry point
+├── App.jsx       # Application routing
+└── main.jsx      # Application entry point
 ```
 
 ## 🌐 Deployment
 
 The repository is connected to Vercel. Configure production environment variables in Vercel and deploy from `main`. A custom domain can be added later from the Vercel project settings.
+
+## 🧭 3D Passport Orbit
+
+The `/passport-orbit` route is lazy-loaded and generates its scene from low-poly Three.js primitives, so there is no model download. Users can drag or touch to rotate the passport, shift perspective with the pointer, change cover materials, and pause the slow orbit. Pixel ratio is capped at 1.5 and a static CSS fallback is used for reduced-motion and low-power contexts. See [AUDIT.md](AUDIT.md) for performance and accessibility evidence.
+
+## Reflection
+
+The hardest part was making AI uncertainty visible: a response can be pending, streaming, tool-backed, or failed. Explicit UI states produced clearer recovery and made the Stop action and polite live announcements testable. I would configure public hosting earlier so the final Lighthouse run could target the production URL instead of a local equivalent. The most surprising lesson was that accessibility clarified the product model: naming landmarks and announcing streamed output made the chat easier to reason about for every user.
 
 ## 👩‍💻 Author
 
