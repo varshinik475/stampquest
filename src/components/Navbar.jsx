@@ -6,6 +6,7 @@ const links = [
   { to: '/stamps', label: 'Stamps' },
   { to: '/explore', label: 'Explore' },
   { to: '/profile', label: 'Profile' }
+  , { to: '/passport-orbit', label: '3D Orbit' }
 ];
 
 export default function Navbar() {

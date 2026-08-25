@@ -230,6 +230,52 @@ button:hover { transform: translateY(-1px); }
   .motion-notes { display: block; }
   .motion-notes h2 { margin-bottom: 18px; }
 }
+
+.orbit-page {
+  min-height: calc(100vh - 73px);
+  padding: clamp(34px, 6vw, 82px) max(22px, 6vw) 72px;
+  color: #102a2b;
+  background: #f5f0e8;
+  background-image: radial-gradient(circle at 12% 12%, rgba(232,124,85,.18), transparent 25%), linear-gradient(120deg, #f5f0e8, #e4efe4 68%, #d7e5df);
+}
+.orbit-intro, .orbit-workbench, .orbit-notes { max-width: 1120px; margin: 0 auto; }
+.orbit-intro { padding-bottom: clamp(38px, 6vw, 70px); }
+.orbit-kicker, .orbit-overline { margin: 0 0 12px; color: #d2533b; font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.orbit-intro h1 { max-width: 800px; margin: 0 0 18px; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(3.3rem, 8vw, 7.8rem); line-height: .88; font-weight: 500; letter-spacing: 0; }
+.orbit-intro h1 em { color: #167d73; font-style: normal; }
+.orbit-description { max-width: 520px; margin: 0; color: #526465; font-size: 1.08rem; line-height: 1.65; }
+.orbit-workbench { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(280px, .75fr); min-height: 570px; overflow: hidden; border: 1px solid rgba(16,42,43,.14); background: rgba(255,255,255,.36); box-shadow: 0 26px 70px rgba(49,68,63,.13); }
+.orbit-stage { min-height: 570px; background: #dce9df; }
+.orbit-canvas { display: block; width: 100%; height: 100%; min-height: 570px; touch-action: none; cursor: grab; }
+.orbit-canvas:active { cursor: grabbing; }
+.orbit-controls { display: flex; flex-direction: column; justify-content: center; gap: 28px; padding: clamp(26px, 5vw, 54px); background: rgba(250,247,239,.82); }
+.orbit-controls h2, .orbit-notes h2 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-weight: 500; letter-spacing: 0; }
+.orbit-controls h2 { font-size: clamp(2rem, 4vw, 3.1rem); }
+.orbit-controls fieldset { padding: 0; border: 0; }
+.orbit-controls legend { margin-bottom: 15px; color: #526465; font-size: .86rem; font-weight: 700; }
+.orbit-swatches { display: flex; gap: 12px; }
+.orbit-swatch { display: grid; place-items: center; width: 46px; height: 46px; padding: 4px; border: 1px solid transparent; border-radius: 50%; background: transparent; cursor: pointer; }
+.orbit-swatch span { display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--swatch); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); transition: transform 180ms ease-out; }
+.orbit-swatch:hover span { transform: scale(1.1); }
+.orbit-swatch:focus-visible { outline: 3px solid #e87c55; outline-offset: 3px; }
+.orbit-swatch.is-selected { border-color: #167d73; }
+.orbit-selection { margin: 12px 0 0; color: #617171; font-size: .82rem; }
+.orbit-toggle { position: relative; display: flex; align-items: center; gap: 12px; color: #102a2b; font-size: .92rem; cursor: pointer; }
+.orbit-toggle input { position: relative; z-index: 2; width: 42px; height: 24px; flex: 0 0 42px; margin: 0; opacity: 0; cursor: pointer; }
+.orbit-toggle__track { position: relative; z-index: 1; width: 42px; height: 24px; flex: 0 0 42px; margin-left: -54px; border-radius: 999px; background: #b8c8bd; pointer-events: none; transition: background-color 180ms ease-out; }
+.orbit-toggle__track::after { content: ''; position: absolute; top: 4px; left: 4px; width: 16px; height: 16px; border-radius: 50%; background: white; transition: transform 180ms ease-out; }
+.orbit-toggle input:checked + .orbit-toggle__track { background: #167d73; }
+.orbit-toggle input:checked + .orbit-toggle__track::after { transform: translateX(18px); }
+.orbit-toggle input:focus-visible + .orbit-toggle__track { outline: 3px solid #e87c55; outline-offset: 3px; }
+.orbit-tip { margin: 0; color: #617171; font-size: .82rem; line-height: 1.55; }
+.orbit-loading { display: grid; min-height: 70vh; place-items: center; color: #167d73; font-weight: 700; }
+.orbit-static { position: relative; display: grid; min-height: 570px; place-items: center; overflow: hidden; background: #dce9df; }
+.orbit-static__glow { position: absolute; width: 290px; height: 290px; border-radius: 50%; background: rgba(232,124,85,.22); filter: blur(30px); }
+.orbit-static__passport { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 205px; height: 255px; color: #f6d37a; background: var(--orbit-cover); border: 7px solid rgba(255,255,255,.13); box-shadow: 20px 25px 0 rgba(16,42,43,.13), 0 30px 50px rgba(16,42,43,.2); transform: rotate(-7deg); }
+.orbit-static__passport span { font-size: 2.8rem; }.orbit-static__passport strong { font-size: 2.3rem; letter-spacing: .12em; }.orbit-static__passport small { margin-top: 18px; color: #fff; font-size: .55rem; letter-spacing: .18em; }
+.orbit-static__ring { position: absolute; width: 440px; height: 145px; border: 3px solid var(--orbit-accent); border-radius: 50%; transform: rotate(-24deg); }.orbit-static__ring--one { opacity: .8; }.orbit-static__ring--two { width: 520px; height: 180px; border-width: 1px; border-color: #f6d37a; transform: rotate(32deg); }
+.orbit-notes { display: grid; grid-template-columns: .75fr 1.25fr; gap: 22px 60px; padding-top: 64px; }.orbit-notes .orbit-overline { grid-row: span 2; }.orbit-notes h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); }.orbit-notes p:last-child { max-width: 700px; margin: 0; color: #526465; line-height: 1.7; }
+@media (max-width: 780px) { .orbit-workbench { grid-template-columns: 1fr; }.orbit-stage, .orbit-canvas, .orbit-static { min-height: 430px; }.orbit-controls { min-height: 360px; }.orbit-notes { display: block; }.orbit-notes h2 { margin-bottom: 18px; } }
 .tool-card {
   display: flex;
   align-items: center;

@@ -103,6 +103,10 @@ npm run dev
 * Photo gallery
 * Travel sharing with friends
 
+## 3D Passport Orbit
+
+Visit `/passport-orbit` for a generated Three.js passport scene. Drag the passport to turn it, move the pointer to shift its perspective, switch cover materials, or pause the slow orbit. The route lazy-loads the 3D chunk, uses only low-poly primitives with no model download, caps the renderer pixel ratio at 1.5, and serves a static fallback for reduced-motion and low-power devices. With more time, I would add a compressed GLB stamp collection and measure frame time across a wider device matrix.
+
 ## 🤖 AI Usage
 
 AI was used as a development assistant for generating component structures, suggesting React logic, creating responsive layouts, and improving the application's architecture. All generated code was manually reviewed, tested, and refined before being included in the final application.

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { TravelProvider } from './context/TravelContext';
 import Layout from './components/Layout';
@@ -9,6 +10,8 @@ import ProfilePage from './pages/ProfilePage';
 import MapPage from './pages/MapPage';
 import Achievements from './pages/Achievements';
 import MotionDemoPage from './pages/MotionDemoPage';
+
+const PassportOrbitPage = lazy(() => import('./pages/PassportOrbitPage'));
 
 function App() {
   return (
@@ -23,6 +26,7 @@ function App() {
           <Route path="/map" element={<MapPage />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/motion-lab" element={<MotionDemoPage />} />
+          <Route path="/passport-orbit" element={<Suspense fallback={<div className="orbit-loading">Loading passport orbit...</div>}><PassportOrbitPage /></Suspense>} />
         </Routes>
       </Layout>
     </TravelProvider>
