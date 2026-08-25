@@ -24,7 +24,30 @@ StampQuest is a React-based travel passport application where users collect digi
 * CSS
 * React Hooks
 * Local Storage
-* ## AI Tool Contract
+
+## 🚀 Run Locally
+
+```bash
+git clone https://github.com/varshinik475/stampquest.git
+cd stampquest
+npm install
+npm run dev
+```
+
+Open `http://127.0.0.1:4173/` for the main app. The interactive 3D experience is available at `http://127.0.0.1:4173/passport-orbit`.
+
+## 🧪 Test And Build
+
+```bash
+npm ci
+npm test
+npm run test:e2e
+npm run build
+```
+
+GitHub Actions runs the component and Playwright suites on every push and pull request. The workflow also uploads the passing primary-flow screenshot as an artifact.
+
+## 🤖 AI Tool Contract
 
 ### `getDestinationInfo`
 
@@ -43,6 +66,7 @@ a user asks about a specific travel destination.
   recommendedDays: number;
   reason: string | null;
 }
+```
 
 ---
 
@@ -83,18 +107,6 @@ src/
 ├── main.jsx
 ```
 
-## 🚀 Installation
-
-```bash
-git clone https://github.com/varshinik475/flyrank-ai-internship.git
-
-cd flyrank-ai-internship
-
-npm install
-
-npm run dev
-```
-
 ## 🎯 Future Improvements
 
 * User authentication
@@ -103,7 +115,11 @@ npm run dev
 * Photo gallery
 * Travel sharing with friends
 
-## 3D Passport Orbit
+## 🌐 Deployment
+
+The repository is connected to Vercel. The previously generated Vercel preview URL is protected by Vercel SSO, so the local URL above is the reliable development demo until a public production deployment is configured.
+
+## 🧭 3D Passport Orbit
 
 Visit `/passport-orbit` for a generated Three.js passport scene. Drag the passport to turn it, move the pointer to shift its perspective, switch cover materials, or pause the slow orbit. The route lazy-loads the 3D chunk, uses only low-poly primitives with no model download, caps the renderer pixel ratio at 1.5, and serves a static fallback for reduced-motion and low-power devices. With more time, I would add a compressed GLB stamp collection and measure frame time across a wider device matrix.
 
