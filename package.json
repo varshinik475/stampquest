@@ -28,13 +28,12 @@
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.5.4",
-    "esbuild": "^0.28.2",
     "jsdom": "^30.0.1",
     "playwright": "^1.62.1",
     "postcss": "^8.5.26",
     "tailwindcss": "^3.4.19",
     "typescript": "^7.0.2",
     "vite": "^5.4.10",
-    "vitest": "^4.1.11"
+    "vitest": "^2.1.9"
   }
 }
