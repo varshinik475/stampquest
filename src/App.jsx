@@ -8,6 +8,7 @@ import ExplorePage from './pages/ExplorePage';
 import ProfilePage from './pages/ProfilePage';
 import MapPage from './pages/MapPage';
 import Achievements from './pages/Achievements';
+import MotionDemoPage from './pages/MotionDemoPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/motion-lab" element={<MotionDemoPage />} />
         </Routes>
       </Layout>
     </TravelProvider>
