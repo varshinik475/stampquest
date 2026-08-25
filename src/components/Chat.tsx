@@ -150,7 +150,7 @@ export function Chat() {
   };
 
   return (
-    <section className="chat">
+    <section className="chat" aria-labelledby="chat-title">
       {/* Header */}
       <header className="chat-header">
         <div>
@@ -158,7 +158,7 @@ export function Chat() {
             🎫 StampQuest
           </div>
 
-          <h1>
+          <h1 id="chat-title">
             Your AI travel guide
           </h1>
 
@@ -175,6 +175,10 @@ export function Chat() {
         ref={messagesContainerRef}
         onScroll={handleScroll}
         className="chat-messages"
+        role="log"
+        aria-live="polite"
+        aria-relevant="additions text"
+        aria-label="Conversation"
       >
         {/* First-run empty state */}
         {messages.length === 0 && (

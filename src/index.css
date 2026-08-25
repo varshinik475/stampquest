@@ -50,6 +50,19 @@
   }
 }
 
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 14px;
+  color: #fff;
+  background: #10233d;
+  transform: translateY(-140%);
+  transition: transform 160ms ease-out;
+}
+.skip-link:focus { transform: translateY(8px); }
+
 .hero-card, .passport-card, .stats-card, .form-card, .badge-card, .map-pin {
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(15, 23, 42, 0.08);

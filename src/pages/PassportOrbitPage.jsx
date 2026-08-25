@@ -173,10 +173,10 @@ export default function PassportOrbitPage() {
   const palette = palettes[paletteIndex];
 
   return (
-    <main className="orbit-page">
+    <section className="orbit-page" aria-labelledby="orbit-title">
       <section className="orbit-intro">
         <p className="orbit-kicker">StampQuest / Passport Orbit</p>
-        <h1>Carry the places<br /><em>with you.</em></h1>
+        <h1 id="orbit-title">Carry the places<br /><em>with you.</em></h1>
         <p className="orbit-description">A small 3D study of the digital passport: tilt it, turn it, and choose the cover it wears on its next journey.</p>
       </section>
       <section className="orbit-workbench" aria-label="Passport 3D configurator">
@@ -204,6 +204,6 @@ export default function PassportOrbitPage() {
         <h2 id="orbit-notes-title">Small geometry, deliberate motion.</h2>
         <p>This scene is generated from a handful of low-poly Three.js primitives, so it ships with no model download and stays under a small texture budget. The canvas is route-lazy-loaded, caps pixel ratio at 1.5, uses low-power rendering, and falls back to a static CSS composition for reduced-motion and low-power contexts. With more time, I would add a compressed GLB stamp collection and test frame time on a wider device matrix.</p>
       </section>
-    </main>
+    </section>
   );
 }

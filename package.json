@@ -28,6 +28,7 @@
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.5.4",
+    "axe-core": "^4.13.0",
     "jsdom": "^30.0.1",
     "playwright": "^1.62.1",
     "postcss": "^8.5.26",

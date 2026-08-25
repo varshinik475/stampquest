@@ -5,8 +5,9 @@ const links = [
   { to: '/passport', label: 'Passport' },
   { to: '/stamps', label: 'Stamps' },
   { to: '/explore', label: 'Explore' },
-  { to: '/profile', label: 'Profile' }
-  , { to: '/passport-orbit', label: '3D Orbit' }
+  { to: '/profile', label: 'Profile' },
+  { to: '/passport-orbit', label: '3D Orbit' },
+  { to: '/chat', label: 'AI Guide' }
 ];
 
 export default function Navbar() {

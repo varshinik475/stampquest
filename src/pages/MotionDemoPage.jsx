@@ -49,7 +49,7 @@ export default function MotionDemoPage() {
   const [lastEvent, setLastEvent] = useState('Choose a trigger to begin.');
 
   return (
-    <main className="motion-page">
+    <section className="motion-page" aria-label="Motion interaction lab">
       <section className="motion-hero" aria-labelledby="motion-title">
         <div className="motion-kicker"><span className="motion-kicker__dot" /> Interaction lab / 01</div>
         <h1 id="motion-title">Send a little<br /><em>signal.</em></h1>
@@ -84,6 +84,6 @@ export default function MotionDemoPage() {
         <h2 id="notes-title">Nothing jumps. Everything answers.</h2>
         <p>Hover and focus use a quick 180ms ease-out lift. Loading and result changes use a 320ms cubic-bezier transition so the label, color, and icon feel connected. Success lingers for 1.5 seconds before returning to idle; errors stay available for retry. Reduced-motion users keep every state and color cue, with transforms and delays removed.</p>
       </section>
-    </main>
+    </section>
   );
 }
